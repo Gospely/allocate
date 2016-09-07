@@ -1,0 +1,24 @@
+{
+  "name": "gospel-docker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "start.js",
+  "dependencies": {
+    "shelljs": "^0.7.4",
+    "yargs": "^5.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leinue/gospel-docker.git"
+  },
+  "author": "xieyang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leinue/gospel-docker/issues"
+  },
+  "homepage": "https://github.com/leinue/gospel-docker#readme"
+}
