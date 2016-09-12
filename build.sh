@@ -1,1 +1,1 @@
-docker build -t gospel .
+docker build -t ivydom/gospel .
