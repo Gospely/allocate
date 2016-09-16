@@ -18,8 +18,13 @@ var argv = require('yargs')
     demand: true,
     describe: 'container ssh port to be exposed',
   })
+  .option('r', {
+    alias: 'resource',
+    demand: true,
+    describe: 'the source of gospel ide'
+  })
   .usage('Usage: start.js [options]')
-  .example('start.js -n foo -p 7100 -sp 8888', 'run Gospel docker')
+  .example('start.js -n foo -p 7100 -s 8888 -r /var/www/gospel', 'run Gospel docker')
   .help('h')
   .alias('h', 'help')
   .epilog('gospel copyright 2015')
@@ -27,9 +32,10 @@ var argv = require('yargs')
 
 var name = argv.n,
     port = argv.p,
-    sshPort = argv.s;
+    sshPort = argv.s,
+    src = argv.r;
 
-var runBash = "docker run -d --name " + name  + " -p " + port + ":8181 -v /var/www/c9sdk/plugins:/var/.gospel/plugins -v /var/www/c9sdk/node_modules:/var/.gospel/node_modules -v /var/www/c9sdk/NOTICE:/var/.gospel/NOTICE -v /var/www/c9sdk/README.md:/var/.gospel/README.md -v /var/www/c9sdk/bin:/var/.gospel/bin -v /var/www/c9sdk/docs:/var/.gospel/docs -v /var/www/c9sdk/:/var/.gospel/integrations -v /var/www/c9sdk/package.json:/var/.gospel/package.json -v /var/www/c9sdk/scripts:/var/.gospel/scripts -v /var/www/c9sdk/server.js:/var/.gospel/server.js -v /var/www/c9sdk/test:/var/.gospel/test -v /var/www/c9sdk/build:/var/.gospel/build -v /var/www/c9sdk/configs:/var/.gospel/configs -v /var/www/c9sdk/local:/var/.gospel/local -v /var/www/c9sdk/settings:/var/.gospel/settings -v /var/www/c9sdk/.git:/var/.gospel/.git -p " + sshPort + ":22 gospel:latest -D";
+var runBash = "docker run -d --name " + name  + " -p " + port + ":8181 -v " + src + "/plugins:/var/.gospel/plugins -v " + src + "/node_modules:/var/.gospel/node_modules -v " + src + "/NOTICE:/var/.gospel/NOTICE -v " + src + "/README.md:/var/.gospel/README.md -v " + src + "/bin:/var/.gospel/bin -v " + src + "/docs:/var/.gospel/docs -v " + src + "/:/var/.gospel/integrations -v " + src + "/package.json:/var/.gospel/package.json -v " + src + "/scripts:/var/.gospel/scripts -v " + src + "/server.js:/var/.gospel/server.js -v " + src + "/test:/var/.gospel/test -v " + src + "/build:/var/.gospel/build -v " + src + "/configs:/var/.gospel/configs -v " + src + "/local:/var/.gospel/local -v " + src + "/settings:/var/.gospel/settings -v " + src + "/.git:/var/.gospel/.git -p " + sshPort + ":22 gospel:latest -D";
 
 var result = exec(runBash);
 
