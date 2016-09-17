@@ -35,7 +35,7 @@ var name = argv.n,
     sshPort = argv.s,
     src = argv.r;
 
-var runBash = "docker run -d --name " + name  + " -p " + port + ":8181 -v " + src + "/plugins:/var/.gospel/plugins -v " + src + "/node_modules:/var/.gospel/node_modules -v " + src + "/NOTICE:/var/.gospel/NOTICE -v " + src + "/README.md:/var/.gospel/README.md -v " + src + "/bin:/var/.gospel/bin -v " + src + "/docs:/var/.gospel/docs -v " + src + "/:/var/.gospel/integrations -v " + src + "/package.json:/var/.gospel/package.json -v " + src + "/scripts:/var/.gospel/scripts -v " + src + "/server.js:/var/.gospel/server.js -v " + src + "/test:/var/.gospel/test -v " + src + "/build:/var/.gospel/build -v " + src + "/configs:/var/.gospel/configs -v " + src + "/local:/var/.gospel/local -v " + src + "/settings:/var/.gospel/settings -v " + src + "/.git:/var/.gospel/.git -p " + sshPort + ":22 gospel:latest -D";
+var runBash = "docker run -d --name " + name  + " -p " + port + ":8181 -v " + src + "/plugins:/var/.gospel/plugins -v " + src + "/node_modules:/var/.gospel/node_modules -v " + src + "/NOTICE:/var/.gospel/NOTICE -v " + src + "/README.md:/var/.gospel/README.md -v " + src + "/bin:/var/.gospel/bin -v " + src + "/docs:/var/.gospel/docs -v " + src + "/:/var/.gospel/integrations -v " + src + "/package.json:/var/.gospel/package.json -v " + src + "/scripts:/var/.gospel/scripts -v " + src + "/server.js:/var/.gospel/server.js -v " + src + "/test:/var/.gospel/test -v " + src + "/build:/var/.gospel/build -v " + src + "/configs:/var/.gospel/configs -v " + src + "/local:/var/.gospel/local -v " + src + "/settings:/var/.gospel/settings -v " + src + "/.git:/var/.gospel/.git -p " + sshPort + ":22 ivydom/gospel:latest -D";
 
 var result = exec(runBash);
 
