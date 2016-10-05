@@ -5,8 +5,7 @@ MAINTAINER ivy 'xieyang@dodora.cn'
 RUN apt-get update
 RUN apt-get install git -y
 RUN apt-get install vim -y
-RUN apt-get install openssh-server
-RUN mkdir /var/run/sshd
+RUN apt-get install openssh-server -y
 
 #install nvm
 RUN git clone https://github.com/leinue/cnpm/blob/master/cnpm.sh ~/.cnpm
