@@ -12,8 +12,8 @@ RUN git clone https://github.com/leinue/cnpm ~/.cnpm
 RUN sh ~/.cnpm/cnpm.sh
 RUN rm -rf ~/.cnpm
 
-RUN nvm install v6
-RUN nvm use v6
+RUN nvm install v6.6.0
+RUN nvm use v6.6.0
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 #clone code
