@@ -8,12 +8,12 @@ RUN apt-get install vim -y
 RUN apt-get install openssh-server -y
 
 #install nvm
-RUN git clone https://github.com/leinue/cnpm ~/.cnpm
-RUN sh ~/.cnpm/cnpm.sh
-RUN rm -rf ~/.cnpm
 
-RUN nvm install v6.6.0
-RUN nvm use v6.6.0
+RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+RUN export NVM_DIR="$HOME/.nvm"
+RUN [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+RUN nvm install v6
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 #clone code
