@@ -6,15 +6,15 @@ RUN apt-get update
 RUN apt-get install git -y
 RUN apt-get install vim -y
 RUN apt-get install openssh-server -y
-RUN apt-get install wget -y
 
 #install nvm
-wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+RUN git clone https://github.com/leinue/cnpm ~/.cnpm
+RUN sh ~/.cnpm/cnpm.sh
+RUN rm -rf ~/.cnpm
 
-nvm install v6
-npm install -g cnpm --registry=https://registry.npm.taobao.org
+RUN nvm install v6
+RUN nvm use v6
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 #clone code
 RUN git clone https://github.com/Gospely/terminal-socket /var/www/socket
