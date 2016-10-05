@@ -27,7 +27,7 @@ var argv = require('yargs')
 
 var name = argv.n,
     port = argv.p,
-    sshPort = argv.s,
+    sshPort = argv.s;
 
 var runBash = 'docker build -t gospel_socket . && docker run -itd -p ' + port + ':3000 -p ' + sshPort + ':22 -w /var/www/socket --name="gospel_socket_' + name + '" gospel_socket';
 
