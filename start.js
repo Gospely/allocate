@@ -29,12 +29,12 @@ var name = argv.n,
     port = argv.p,
     sshPort = argv.s,
 
-var runBash = '';
+var runBash = 'docker build -t gospel_socket . && docker run -itd -p ' + port + ':3000 -p ' + sshPort + ':22 -w /var/www/socket --name="gospel_socket_' + name + '" gospel_socket';
 
 var result = exec(runBash);
 
 if(result.code !== 0) {
    console.error(result);
 }else {
-   console.log('Gosple Socket is running, SSH: ' + sshPort, 'Socket: ' + port);
+   console.log('Gosple Container is running, SSH: ' + sshPort, 'Socket: ' + port);
 }
