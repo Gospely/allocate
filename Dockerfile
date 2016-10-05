@@ -19,4 +19,4 @@ RUN cnpm install -g supervisor
 
 EXPOSE 22
 
-ENTRYPOINT echo 'root:123456' | chpasswd && /usr/sbin/sshd && service ssh start && cd /var/www/socket && git pull && cnpm install && supervisor app.js && /bin/bash
+ENTRYPOINT echo 'root:123456' | chpasswd && service ssh start && cd /var/www/socket && git pull && cnpm install && supervisor app.js && /bin/bash
