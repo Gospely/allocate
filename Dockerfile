@@ -19,4 +19,4 @@ RUN echo 'root:123456' | chpasswd
 
 EXPOSE 22
 
-ENTRYPOINT service ssh start
+ENTRYPOINT service ssh start && node  && /bin/bash
