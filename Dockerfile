@@ -15,7 +15,7 @@ RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.s
     && nvm install v6 \
     && npm install -g supervisor
 
-RUN sed -i '$a\PermitRootLogin yes' /etc/ssh/sshd_config
+RUN sed -i '$a\PermitRootLogin yes' /etc/ssh/ssh_config
 RUN echo 'root:123456' | chpasswd
 
 EXPOSE 22
