@@ -13,9 +13,7 @@ RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.s
     && export NVM_DIR="$HOME/.nvm" \
     && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" \
     && nvm install v6 \
-    && nvm
     && npm install -g supervisor
-    && supervisor && node -v
 
 RUN echo 'root:123456' | chpasswd
 
