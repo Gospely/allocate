@@ -21,4 +21,4 @@ RUN mkdir ~/.gospely/.socket
 
 EXPOSE 22
 
-ENTRYPOINT service ssh start && cd ~/.gospely/.socket && supervisor app.js && /bin/bash
+ENTRYPOINT service ssh start && supervisor ~/.gospely/.socket/app.js && /bin/bash
