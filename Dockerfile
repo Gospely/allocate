@@ -7,7 +7,7 @@ RUN apt-get install git -y
 RUN apt-get install vim -y
 RUN apt-get install openssh-server -y
 RUN apt-get install nodejs -y
-RUN sudo ln -s `which nodejs` /usr/bin/node
+RUN ln -s `which nodejs` /usr/bin/node
 
 #install nvm
 
