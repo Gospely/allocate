@@ -22,4 +22,4 @@ RUN echo 'root:123456' | chpasswd
 
 EXPOSE 22
 
-ENTRYPOINT service ssh start && supervisor ~/.gospely/.socket/app.js && /bin/bash
+ENTRYPOINT service ssh start && npm -v && supervisor ~/.gospely/.socket/app.js && /bin/bash
