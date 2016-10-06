@@ -16,9 +16,7 @@ RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.s
     && npm install -g supervisor
 
 RUN echo 'root:123456' | chpasswd
-RUN mkdir ~/.gospely
-RUN mkdir ~/.gospely/.socket
 
 EXPOSE 22
 
-ENTRYPOINT service ssh start && supervisor ~/.gospely/.socket/app.js && /bin/bash
+ENTRYPOINT service ssh start && node ~/.gospely/.socket/app.js && /bin/bash
