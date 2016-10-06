@@ -13,12 +13,11 @@ RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.s
     && export NVM_DIR="$HOME/.nvm" \
     && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" \
     && nvm install v6 \
-    && npm install -g cnpm --registry=https://registry.npm.taobao.org \
-    && cd /var/www/socket/ && cnpm install \ 
-    && cnpm install -g supervisor
+    && cd /var/www/socket/ && npm install \ 
+    && npm install -g supervisor
 
 RUN echo 'root:123456' | chpasswd
 
 EXPOSE 22
 
-ENTRYPOINT service ssh start && cd /var/www/socket && git pull && cnpm install && supervisor app.js && cd ~ && /bin/bash
+ENTRYPOINT service ssh start && cd /var/www/socket && git pull && npm install && supervisor app.js && cd ~ && /bin/bash
