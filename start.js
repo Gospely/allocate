@@ -23,6 +23,11 @@ var argv = require('yargs')
     demand: false,
     describe: 'socket resource',
   })
+  .option('a', {
+    alias: 'appport',
+    demand: true,
+    describe: 'application port'
+  })
   .usage('Usage: start.js [options]')
   .example('start.js -n foo -p 7100 -s 8888 -r /var/www/gospely/socket', 'run Gospel socket')
   .help('h')
@@ -33,9 +38,10 @@ var argv = require('yargs')
 var name = argv.n,
     port = argv.p,
     sshPort = argv.s,
-    socketResource = argv.r;    
+    socketResource = argv.r,
+    appPort = argv.a;
 
-var runBash = 'docker build -t gospel_socket . && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -p ' + port + ':3000 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket';
+var runBash = 'docker build -t gospel_socket . && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket';
 
 var result = exec(runBash);
 
