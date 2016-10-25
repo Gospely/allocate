@@ -28,6 +28,11 @@ var argv = require('yargs')
     demand: true,
     describe: 'application port'
   })
+  .option('w', {
+    alias: 'password',
+    demand: true,
+    describe: 'shh password'
+  })
   .usage('Usage: start.js [options]')
   .example('start.js -n foo -p 7100 -s 8888 -r /var/www/gospely/socket', 'run Gospel socket')
   .help('h')
@@ -39,9 +44,11 @@ var name = argv.n,
     port = argv.p,
     sshPort = argv.s,
     socketResource = argv.r,
-    appPort = argv.a;
+    appPort = argv.a,
+    password argv.w;
 
-var runBash = 'docker build -t gospel_socket . && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket';
+
+var runBash = 'docker build -t gospel_socket .  && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket && docker exec -it gospel_project_' + name ' /bin/bash && echo \'root:' +password+ '\' | chpasswd';
 
 var result = exec(runBash);
 
