@@ -52,7 +52,7 @@ var name = argv.n,
     appPort = argv.a,
     password = argv.w;
 
-if(socketResource == null || socketResource == undefined || socketResource = ''){
+if(socketResource == null || socketResource == undefined || socketResource == ''){
   socketResource = "/var/www/gospely/socket";
 }
 
