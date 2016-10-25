@@ -57,7 +57,7 @@ if(socketResource == null || socketResource == undefined || socketResource == ''
   socketResource = "/var/www/gospely/socket";
 }
 var sshCmd = "echo 'root:" +password+ "' | chpasswd";
-var runBash = 'docker build -t gospel_socket . && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -m '+ memory +'  -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket && docker exec  gospel_project_' + name +sshCmd;
+var runBash = 'docker build -t gospel_socket . && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -m '+ memory +'  -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket && docker exec  gospel_project_' + name+ ' ' +sshCmd;
 console.log(runBash);
 var result = exec(runBash);
 
