@@ -71,9 +71,9 @@ if(imageName == 'nodejs') {
 if(imageName == 'vue-f7') {
   " && git clone https://github.com/Gospely/vue-f7.git /var/www/storage/codes/" + name + " && rm -rf .git"
 }
-if(imageName == 'nodejs' || imageName == 'vue-f7'){
-  imageName = 'socket';
-}
+// if(imageName == 'nodejs' || imageName == 'vue-f7'){
+//   imageName = 'socket';
+// }
 if(socketResource == null || socketResource == undefined || socketResource == ''){
   socketResource = "/var/www/gospely/socket";
 }
