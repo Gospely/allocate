@@ -63,15 +63,21 @@ var imageName = filePath;
 if(filePath == 'c++'){
   imageName == cpp;
 }
-if(imageName == 'nodejs' || imageName == 'vuef-7'){
+if(imageName == 'nodejs' || imageName == 'vue-f7'){
   imageName = 'socket';
 }
-
+var cloneCmd = "";
+if(imageName == 'nodejs') {
+  cloneCmd = " && git clone https://github.com/Gospely/hello_node.git  /var/www/storage/codes/" + name +"&& rm -rf .git"
+}
+if(imageName == 'vue-f7') {
+  " && git clone https://github.com/Gospely/vue-f7.git /var/www/storage/codes/" + name +"&& rm -rf .git"
+}
 if(socketResource == null || socketResource == undefined || socketResource == ''){
   socketResource = "/var/www/gospely/socket";
 }
 var sshCmd = "echo 'root:" +password+ "' | chpasswd";
-var runBash = 'docker build -t gospel_' + imageName + ' /root/gospely/allocate/df/' + filePath + ' && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -m '+ memory +'  -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket';
+var runBash = 'docker build -t gospel_' + imageName + ' /root/gospely/allocate/df/' + filePath + ' '+ cloneCmd +' && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -m '+ memory +'  -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket';
 console.log(runBash);
 var result = exec(runBash);
 
