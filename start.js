@@ -68,10 +68,10 @@ if(imageName == 'nodejs' || imageName == 'vue-f7'){
 }
 var cloneCmd = "";
 if(imageName == 'nodejs') {
-  cloneCmd = " && git clone https://github.com/Gospely/hello_node.git  /var/www/storage/codes/" + name +"&& rm -rf .git"
+  cloneCmd = " && git clone https://github.com/Gospely/hello_node.git  /var/www/storage/codes/" + name +" && rm -rf .git"
 }
 if(imageName == 'vue-f7') {
-  " && git clone https://github.com/Gospely/vue-f7.git /var/www/storage/codes/" + name +"&& rm -rf .git"
+  " && git clone https://github.com/Gospely/vue-f7.git /var/www/storage/codes/" + name + " && rm -rf .git"
 }
 if(socketResource == null || socketResource == undefined || socketResource == ''){
   socketResource = "/var/www/gospely/socket";
