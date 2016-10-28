@@ -19,6 +19,9 @@ RUN echo 'root:123456' | chpasswd
 
 RUN mkdir /root/workspace
 
+# init node project
+RUN git clone https://github.com/Gospely/hello_node.git /root/workspace && rm -rf .git
+
 EXPOSE 22
 
 ENTRYPOINT wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash \

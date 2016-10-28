@@ -38,6 +38,11 @@ var argv = require('yargs')
     demand: true,
     describe: 'docker memory'
   })
+  .option('f', {
+    alias: 'file',
+    demand: true,
+    describe: 'docker file path'
+  })
   .usage('Usage: start.js [options]')
   .example('start.js -n foo -p 7100 -s 8888 -r /var/www/gospely/socket', 'run Gospel socket')
   .help('h')
@@ -51,13 +56,22 @@ var name = argv.n,
     socketResource = argv.r,
     appPort = argv.a,
     password = argv.w,
-    memory = argv.m;
+    memory = argv.m,
+    filePath = argv.f;
+    console.log(filePath);
+var imageName = filePath;
+if(filePath == 'c++'){
+  imageName == cpp;
+}
+if(imageName == 'nodejs' || imageName == 'vuef-7'){
+  imageName = 'socket';
+}
 
 if(socketResource == null || socketResource == undefined || socketResource == ''){
   socketResource = "/var/www/gospely/socket";
 }
 var sshCmd = "echo 'root:" +password+ "' | chpasswd";
-var runBash = 'docker build -t gospel_socket /root/gospely/allocate/df' + filePath + '/ && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -m '+ memory +'  -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket';
+var runBash = 'docker build -t gospel_' + imageName + ' /root/gospely/allocate/df/' + filePath + ' && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -m '+ memory +'  -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket';
 console.log(runBash);
 var result = exec(runBash);
 
