@@ -19,7 +19,7 @@ RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/s
 RUN mkdir /root/workspace
 
 # init node project
-RUN git clone https://github.com/Gospely/hello_node.git /root/workspace && rm -rf .git
+RUN git clone https://github.com/Gospely/hello_node.git /root/workspace && cd /root/workspace && rm -rf .git
 
 EXPOSE 22
 

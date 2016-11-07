@@ -77,7 +77,7 @@ if(imageName == 'vue-f7') {
 if(socketResource == null || socketResource == undefined || socketResource == ''){
   socketResource = "/var/www/gospely/socket";
 }
-var sshCmd = " /bin/bash -c 'echo root:" +password+ " | chpasswd '";
+var sshCmd = "echo root:" + password + " | chpasswd ";
 var runBash = 'docker build -t gospel_' + imageName + ' /root/gospely/allocate/df/' + filePath + ' '+ cloneCmd +' && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -m '+ memory +'  -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket ' + sshCmd ;
 console.log(runBash);
 var result = exec(runBash);
