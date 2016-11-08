@@ -65,7 +65,7 @@ if(filePath == 'c++'){
 }
 var split = filePath.split(":");
 
-if(split[1] != lastest) {
+if(split[1] != "lastest") {
   filePath = split[0] + "/" + split[1];
 }
 //var cloneCmd = " && git clone " + git + "  /var/www/storage/codes/" + name +" && rm -rf .git"
