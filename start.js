@@ -43,11 +43,6 @@ var argv = require('yargs')
     demand: true,
     describe: 'docker file path'
   })
-  .option('g', {
-    alias: 'git',
-    demand: true,
-    describe: 'git Repository'
-  })
   .usage('Usage: start.js [options]')
   .example('start.js -n foo -p 7100 -s 8888 -r /var/www/gospely/socket', 'run Gospel socket')
   .help('h')
@@ -62,7 +57,6 @@ var name = argv.n,
     appPort = argv.a,
     password = argv.w,
     memory = argv.m,
-    git = argv.g,
     filePath = argv.f;
     console.log(filePath);
 var imageName = filePath;
@@ -74,7 +68,7 @@ var split = filePath.split(":");
 if(split[1] != lastest) {
   filePath = split[0] + "/" + split[1];
 }
-var cloneCmd = " && git clone " + git + "  /var/www/storage/codes/" + name +" && rm -rf .git"
+//var cloneCmd = " && git clone " + git + "  /var/www/storage/codes/" + name +" && rm -rf .git"
 
 // if(imageName == 'nodejs' || imageName == 'vue-f7'){
 //   imageName = 'socket';
@@ -83,7 +77,7 @@ if(socketResource == null || socketResource == undefined || socketResource == ''
   socketResource = "/var/www/gospely/socket";
 }
 var sshCmd = "echo 'root:" + password + "' | chpasswd ";
-var runBash = 'docker build -t gospel_' + imageName + ' /root/gospely/allocate/df/' + filePath + ' '+ cloneCmd +' && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -m '+ memory +'  -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '" gospel_socket ' + sshCmd ;
+var runBash = 'docker build -t gospel_' + imageName + ' /root/gospely/allocate/df/' + filePath  +' && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' + name + ' -m '+ memory +'  -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' + sshPort + ':22 -w /root/.gospely/.socket -v ' + socketResource + ':/root/.gospely/.socket --name="gospel_project_' + name + '"  gospel_' + imageName + " " + sshCmd ;
 console.log(runBash);
 var result = exec(runBash);
 cd
