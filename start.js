@@ -43,6 +43,11 @@ var argv = require('yargs')
     demand: true,
     describe: 'docker file path'
   })
+  .option('g', {
+    alias: 'git',
+    demand: true,
+    describe: 'git Repository'
+  })
   .usage('Usage: start.js [options]')
   .example('start.js -n foo -p 7100 -s 8888 -r /var/www/gospely/socket', 'run Gospel socket')
   .help('h')
@@ -57,20 +62,20 @@ var name = argv.n,
     appPort = argv.a,
     password = argv.w,
     memory = argv.m,
+    git = argv.g,
     filePath = argv.f;
     console.log(filePath);
 var imageName = filePath;
 if(filePath == 'c++'){
   imageName == cpp;
 }
+var split = filePath.split(":");
 
-var cloneCmd = "";
-if(imageName == 'nodejs') {
-  cloneCmd = " && git clone https://github.com/Gospely/hello_node.git  /var/www/storage/codes/" + name +" && rm -rf .git"
+if(split[1] != lastest) {
+  filePath = split[0] + "/" + split[1];
 }
-if(imageName == 'vue-f7') {
-  cloneCmd = " && git clone https://github.com/Gospely/vue-f7.git /var/www/storage/codes/" + name + " && rm -rf .git"
-}
+var cloneCmd = " && git clone " + git + "  /var/www/storage/codes/" + name +" && rm -rf .git"
+
 // if(imageName == 'nodejs' || imageName == 'vue-f7'){
 //   imageName = 'socket';
 // }
