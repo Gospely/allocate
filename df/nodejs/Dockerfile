@@ -20,6 +20,9 @@ RUN mkdir /root/workspace
 
 # init node project
 RUN git clone https://github.com/Gospely/hello_node.git /root/workspace && cd /root/workspace && rm -rf .git
+RUN git clone https://github.com/Gospely/excute.git /root/.db
+RUN chmod 777 /root/.db/chmod.sh
+RUN sh chmod.sh
 
 EXPOSE 22
 
