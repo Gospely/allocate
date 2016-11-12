@@ -89,7 +89,7 @@ var runBash = 'docker build -t gospel_' + imageName +
   ' /root/gospely/allocate/df/' + filePath +
   ' && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' +
   name + ' -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' +
-  sshPort + ':22 ' + ' -h ' + hostName + '-w /root/workspace -v ' +
+  sshPort + ':22 ' + ' -h ' + hostName + ' -w /root/workspace -v ' +
   socketResource +
   ':/root/.gospely/.socket --name="gospel_project_' + name + '"  gospel_' +
   imageName;
