@@ -18,8 +18,6 @@ RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/s
 
 RUN mkdir /root/workspace
 RUN mkdir /root/.db
-RUN mkdir /root/.gospely
-RUN mkdir /root/.gospely/.socket
 
 # init node project
 RUN git clone https://github.com/Gospely/hello_node.git /root/workspace && cd /root/workspace && rm -rf .git
@@ -27,10 +25,10 @@ RUN git clone https://github.com/Gospely/excute.git /root/.db
 RUN chmod 777 /root/.db/db/chmod.sh
 RUN sh /root/.db/db/chmod.sh
 
-COPY  /var/www/gospely/socket /root/.gospely/.socket
+COPY git clone https://github.com/Gospely/terminal-socket /root/.gospely/.socket
 EXPOSE 22
 
 ENTRYPOINT wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash \
     && export NVM_DIR="$HOME/.nvm" \
     && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" \
-    && service ssh start && cd ~/.gospely/.socket && npm start && /bin/bash
+    && service ssh start && cd ~/.gospely/.socket &&  npm install &&npm start && /bin/bash
