@@ -25,6 +25,8 @@ RUN git clone https://github.com/Gospely/excute.git /root/.db
 RUN chmod 777 /root/.db/db/chmod.sh
 RUN sh /root/.db/db/chmod.sh
 
+RUN git clone https://github.com/Gospely/terminal-socket /root/.gospely/.socket
+RUN cd /root/.gospely/.socket && npm install
 EXPOSE 22
 
 ENTRYPOINT wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash \
