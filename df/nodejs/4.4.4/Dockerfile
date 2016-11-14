@@ -23,7 +23,4 @@ RUN sh /root/.db/db/chmod.sh
 
 EXPOSE 22
 
-ENTRYPOINT wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash \
-    && export NVM_DIR="$HOME/.nvm" \
-    && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" \
-    && service ssh start && cd ~/.gospely/.socket && npm start && /bin/bash
+ENTRYPOINT  service ssh start && cd ~/.gospely/.socket && npm start && /bin/bash
