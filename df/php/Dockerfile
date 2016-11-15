@@ -1,13 +1,12 @@
-FROM ubuntu
+FROM php:7.1-rc-fpm
 
-MAINTAINER ivy 'xieyang@dodora.cn'
+MAINTAINER shark 'shark@dodora.cn'
+
 
 RUN apt-get update
 RUN apt-get install git -y
 RUN apt-get install vim -y
 RUN apt-get install openssh-server -y
-
-#install nvm
 
 RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash \
     && export NVM_DIR="$HOME/.nvm" \
@@ -17,9 +16,8 @@ RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.s
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 RUN mkdir /root/workspace
-
-# init node project
-RUN git clone https://github.com/Gospely/hello_node.git /root/workspace && cd /root/workspace && rm -rf .git
+#modify the default workspace of nginx
+sed -i 's:usr/share/nginx/html:/root/workspace:g' /etc/nginx/nginx.conf
 
 EXPOSE 22
 
