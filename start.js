@@ -94,9 +94,7 @@ if (socketResource == null || socketResource == undefined || socketResource ==
 }
 
 var sshCmd = "echo 'root:" + password + "' | chpasswd ";
-var runBash = 'docker build -t gospel_' + imageName +
-  ' /root/gospely/allocate/df/' + filePath +
-  ' && docker run -itd --volumes-from docker-volume-' + creator +
+var runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
   ' -v /var/www/storage/codes/' + creator + "/" + name +
   ':/root/workspace/ -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
   ':8086 -p ' +
