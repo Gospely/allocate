@@ -48,6 +48,11 @@ var argv = require('yargs')
     demand: true,
     describe: 'host name'
   })
+  .option('c', {
+    alias: 'creator',
+    demand: true,
+    describe: 'docker creator'
+  })
   .usage('Usage: start.js [options]')
   .example('start.js -n foo -p 7100 -s 8888 -r /var/www/gospely/socket',
     'run Gospel socket')
@@ -63,6 +68,7 @@ var name = argv.n,
   appPort = argv.a,
   password = argv.w,
   memory = argv.m,
+  creator = argv.c,
   filePath = argv.f,
   hostName = argv.o;
 console.log(filePath);
@@ -71,6 +77,8 @@ if (filePath == 'c++') {
   imageName == cpp;
 }
 var split = filePath.split(":");
+
+
 
 if (split[1] != "lastest") {
   filePath = split[0] + "/" + split[1];
@@ -84,14 +92,17 @@ if (socketResource == null || socketResource == undefined || socketResource ==
   '') {
   socketResource = "/var/www/gospely/socket";
 }
+
 var sshCmd = "echo 'root:" + password + "' | chpasswd ";
 var runBash = 'docker build -t gospel_' + imageName +
   ' /root/gospely/allocate/df/' + filePath +
-  ' && docker run -itd -v /var/www/storage/codes/' + name + ':/root/workspace/' +
-  name + ' -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort + ':8086 -p ' +
+  ' && docker run -itd --volumes-from docker-volume-' + creator +
+  ' -v /var/www/storage/codes/' + creator + "/" + name +
+  ':/root/workspace/ -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
+  ':8086 -p ' +
   sshPort + ':22 ' + ' -h ' + hostName + ' -w /root/workspace -v ' +
   socketResource +
-  ':/root/.gospely/.socket --name="gospel_project_' + name + '"  gospel_' +
+  ':/root/.gospely/.socket:ro --name="gospel_project_' + name + '"  gospel_' +
   imageName;
 console.log(runBash);
 var result = exec(runBash);
