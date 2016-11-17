@@ -100,7 +100,7 @@ var runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
   ':8086 -p ' +
   sshPort + ':22 ' + ' -h ' + hostName + ' -w /root/workspace -v ' +
   socketResource +
-  ':/root/.gospely/.socket:ro --name="gospel_project_' + name + '"  gospel_' +
+  ':/root/.gospely/.socket:ro --name="gospel_project_' + name + '"  gospel-' +
   imageName;
 console.log(runBash);
 var result = exec(runBash);

@@ -1,11 +1,6 @@
-FROM node:4.4.4
+FROM gospel-ubuntu
 
 MAINTAINER ivy 'xieyang@dodora.cn'
-
-RUN apt-get update
-RUN apt-get install git -y
-RUN apt-get install vim -y
-RUN apt-get install openssh-server -y
 
 # gpg keys listed at https://github.com/nodejs/node
 RUN set -ex \
@@ -33,13 +28,11 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   && rm "node-v$NODE_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc SHASUMS256.txt \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-RUN mkdir /root/workspace
 
 # init node project
-RUN git clone https://github.com/Gospely/hello_node.git /root/workspace && cd /root/workspace && rm -rf .git
+RUN git clone https://github.com/Gospely/hello_node.git /root/workspace
 
 EXPOSE 22
 
-ENTRYPOINT  service ssh start && cd ~/.gospely/.socket && npm start && /bin/bash
+ENTRYPOINT cd /root/workspace && rm -rf .git && node index.js && /bin/bash
