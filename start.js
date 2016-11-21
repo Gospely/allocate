@@ -96,7 +96,7 @@ if (socketResource == null || socketResource == undefined || socketResource ==
 var sshCmd = "echo 'root:" + password + "' | chpasswd ";
 var runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
   ' -v /var/www/storage/codes/' + creator + "/" + name +
-  ':/root/workspace/ -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
+  ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
   ':8086 -p ' +
   sshPort + ':22 ' + ' -h ' + hostName + ' -w /root/workspace -v ' +
   socketResource +
