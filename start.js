@@ -94,14 +94,28 @@ if (socketResource == null || socketResource == undefined || socketResource ==
 }
 
 var sshCmd = "echo 'root:" + password + "' | chpasswd ";
-var runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
-  ' -v /var/www/storage/codes/' + creator + "/" + name +
-  ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
-  ':8086 -p ' +
-  sshPort + ':22 ' + ' -h ' + hostName + ' -w /root/workspace -v ' +
-  socketResource +
-  ':/root/.gospely/.socket:ro --name="gospel_project_' + name + '"  gospel-' +
-  imageName;
+var runBash = '';
+if (split[0] == 'nodejs') {
+  runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
+    ' -v /var/www/storage/codes/' + creator + "/" + name +
+    ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
+    ':8086 -p ' +
+    sshPort + ':22 ' + ' -h ' + hostName +
+    ' -w /root/workspace -v  --name="gospel_project_' + name + '"  gospel-' +
+    imageName;
+}
+if (split[0] == 'php') {
+  runBash =
+    'docker run -itd -e "VIRTUAL_HOST=localhost" --volumes-from docker-volume-' +
+    creator +
+    ' -v /var/www/storage/codes/' + creator + "/" + name +
+    ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
+    ':80 -p ' +
+    sshPort + ':22 ' + ' -h ' + hostName +
+    ' -w /root/workspace -v  --name="gospel_project_' + name + '"  gospel-' +
+    imageName;
+}
+
 console.log(runBash);
 var result = exec(runBash);
 cd
