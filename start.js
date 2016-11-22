@@ -107,7 +107,7 @@ if (split[0] == 'nodejs') {
     ' -w /root/workspace --name="gospel_project_' + name + '"  gospel-' +
     imageName;
 }
-if (split[0] == 'php') {
+if (split[0] == 'php' || split[0] == 'wordpress') {
   exec(
     "git clone https://github.com/Gospely/hello_php.git /var/www/storage/codes/" +
     creator + "/" + name);
