@@ -111,7 +111,7 @@ if (split[0] == 'php' || split[0] == 'wordpress') {
   if (split[0] == 'wordpress') {
 
     exec(
-      "git clone https://github.com/WordPress/WordPress.git /var/www/storage/codes/" +
+      "cp -r /root/gospely/applications/WordPress/ /var/www/storage/codes/" +
       creator + "/" + name);
   } else {
     exec(
