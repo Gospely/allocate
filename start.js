@@ -101,7 +101,7 @@ if (split[0] == 'nodejs') {
     ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
     ':8086 -p ' +
     sshPort + ':22 ' + ' -h ' + hostName +
-    ' -w /root/workspace -v  --name="gospel_project_' + name + '"  gospel-' +
+    ' -w /root/workspace --name="gospel_project_' + name + '"  gospel-' +
     imageName;
 }
 if (split[0] == 'php') {
