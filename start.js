@@ -124,11 +124,9 @@ if (split[0] == 'php') {
 
 console.log(runBash);
 exec(
-  "cd /var/www/storage/codes/" +
-  creator + "/" + name + " & rm -rf .git");
+  "bash -c 'cd /var/www/storage/codes/" +
+  creator + "/" + name + " && rm -rf .git'");
 var result = exec(runBash);
-cd
-
 
 if (result.code !== 0) {
   console.error(result);
