@@ -108,9 +108,16 @@ if (split[0] == 'nodejs') {
     imageName;
 }
 if (split[0] == 'php' || split[0] == 'wordpress') {
-  exec(
-    "git clone https://github.com/Gospely/hello_php.git /var/www/storage/codes/" +
-    creator + "/" + name);
+  if (split[0] == 'wordpress') {
+
+    exec(
+      "git clone https://github.com/WordPress/WordPress.git /var/www/storage/codes/" +
+      creator + "/" + name);
+  } else {
+    exec(
+      "git clone https://github.com/Gospely/hello_php.git /var/www/storage/codes/" +
+      creator + "/" + name);
+  }
   runBash =
     'docker run -itd -e "VIRTUAL_HOST=localhost" --volumes-from docker-volume-' +
     creator +
