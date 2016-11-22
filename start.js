@@ -112,7 +112,7 @@ if (split[0] == 'php') {
     ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
     ':80 -p ' +
     sshPort + ':22 ' + ' -h ' + hostName +
-    ' -w /root/workspace -v  --name="gospel_project_' + name + '"  gospel-' +
+    ' -w /root/workspace --name="gospel_project_' + name + '"  gospel-' +
     imageName;
 }
 
