@@ -107,11 +107,8 @@ if (split[0] == 'nodejs') {
     ' -w /root/workspace --name="gospel_project_' + name + '"  gospel-' +
     imageName;
 }
-
+console.log(split[0]);
 if(split[0] == 'vue-f7') {
-  exec(
-    "git clone https://github.com/Gospely/vue-f7.git /var/www/storage/codes/" +
-    creator + "/" + name);
   runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
     ' -v /var/www/storage/codes/' + creator + "/" + name +
     ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
