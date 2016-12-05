@@ -111,7 +111,7 @@ if (split[0] == 'php' || split[0] == 'wordpress') {
   if (split[0] == 'wordpress') {
 
     exec(
-      "cp -r /root/gospely/applications/WordPress/ /var/www/storage/codes/" +
+      "cp -r /root/gospely/applications/wordpress/ /var/www/storage/codes/" +
       creator + "/" + name);
   } else {
     exec(
