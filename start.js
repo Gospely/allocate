@@ -110,7 +110,7 @@ if (split[0] == 'nodejs') {
 
 if(split[0] == 'vue-f7') {
   exec(
-    "git clone https://github.com/Gospely/vuef-7.git /var/www/storage/codes/" +
+    "git clone https://github.com/Gospely/vue-f7.git /var/www/storage/codes/" +
     creator + "/" + name);
   runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
     ' -v /var/www/storage/codes/' + creator + "/" + name +
