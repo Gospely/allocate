@@ -96,9 +96,7 @@ if (socketResource == null || socketResource == undefined || socketResource ==
 var sshCmd = "echo 'root:" + password + "' | chpasswd ";
 var runBash = '';
 if (split[0] == 'nodejs') {
-  exec(
-    "git clone https://github.com/Gospely/hello_node.git /var/www/storage/codes/" +
-    creator + "/" + name);
+  
   runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
     ' -v /var/www/storage/codes/' + creator + "/" + name +
     ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
@@ -109,6 +107,7 @@ if (split[0] == 'nodejs') {
 }
 console.log(split[0]);
 if(split[0] == 'vue-f7') {
+
   runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
     ' -v /var/www/storage/codes/' + creator + "/" + name +
     ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
@@ -118,16 +117,7 @@ if(split[0] == 'vue-f7') {
     imageName;
 }
 if (split[0] == 'php' || split[0] == 'wordpress') {
-  if (split[0] == 'wordpress') {
 
-    exec(
-      "cp -r /root/gospely/applications/wordpress/ /var/www/storage/codes/" +
-      creator + "/" + name);
-  } else {
-    exec(
-      "git clone https://github.com/Gospely/hello_php.git /var/www/storage/codes/" +
-      creator + "/" + name);
-  }
   runBash =
     'docker run -itd -e "VIRTUAL_HOST=localhost" --volumes-from docker-volume-' +
     creator +
