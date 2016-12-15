@@ -96,10 +96,10 @@ if (socketResource == null || socketResource == undefined || socketResource ==
 var sshCmd = "echo 'root:" + password + "' | chpasswd ";
 var runBash = '';
 if (split[0] == 'nodejs') {
-  
+
   runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
     ' -v /var/www/storage/codes/' + creator + "/" + name +
-    ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
+    ':/root/workspace  -p ' + port + ':3000 -p ' + appPort +
     ':8086 -p ' +
     sshPort + ':22 ' + ' -h ' + hostName +
     ' -w /root/workspace --name="gospel_project_' + name + '"  gospel-' +
@@ -110,7 +110,7 @@ if(split[0] == 'vue-f7') {
 
   runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
     ' -v /var/www/storage/codes/' + creator + "/" + name +
-    ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
+    ':/root/workspace  -p ' + port + ':3000 -p ' + appPort +
     ':8086 -p ' +
     sshPort + ':22 ' + ' -h ' + hostName +
     ' -w /root/workspace --name="gospel_project_' + name + '"  gospel-' +
@@ -122,7 +122,7 @@ if (split[0] == 'php' || split[0] == 'wordpress') {
     'docker run -itd -e "VIRTUAL_HOST=localhost" --volumes-from docker-volume-' +
     creator +
     ' -v /var/www/storage/codes/' + creator + "/" + name +
-    ':/root/workspace -m ' + memory + '  -p ' + port + ':3000 -p ' + appPort +
+    ':/root/workspace  -p ' + port + ':3000 -p ' + appPort +
     ':80 -p ' +
     sshPort + ':22 ' + ' -h ' + hostName +
     ' -w /root/workspace --name="gospel_project_' + name + '"  gospel-' +
