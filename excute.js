@@ -41,7 +41,6 @@ if(command != null && command!= undefined) {
     runBash = runBash + " '" + command + "'";
 }
 console.log(runBash);
-exec();
 var result = exec(runBash);
 
 if (result.code !== 0) {
