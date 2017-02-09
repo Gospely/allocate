@@ -38,7 +38,7 @@ var name = argv.n,
 var runBash = 'sh /root/gospely/deploy/shell/boot/' + file + ' ' + name + ' ' + port;
 
 if(command != null && command!= undefined) {
-    runBash = runBash + "'" + command + "'";
+    runBash = runBash + " '" + command + "'";
 }
 console.log(runBash);
 exec();
