@@ -35,7 +35,7 @@ var name = argv.n,
   port = argv.p,
   command = argv.c,
   file = argv.f;
-var runBash = 'sh /root/gospely/deploy/shell/boot' + file + ' ' + name + ' ' + port;
+var runBash = 'sh /root/gospely/deploy/shell/boot/' + file + ' ' + name + ' ' + port;
 
 if(command != null && command!= undefined) {
     runBash = runBash + "'" + command + "'";
