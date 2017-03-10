@@ -97,7 +97,7 @@ var sshCmd = "echo 'root:" + password + "' | chpasswd ";
 var runBash = '';
 if (split[0] == 'nodejs') {
 
-  runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
+  runBash = 'docker run -itd ' +
     ' -v /var/www/storage/codes/' + creator + "/" + name +
     ':/root/workspace  -p ' + port + ':3000 -p ' + appPort +
     ':8086 -p ' +
@@ -108,7 +108,7 @@ if (split[0] == 'nodejs') {
 console.log(split[0]);
 if(split[0] == 'vue-f7') {
 
-  runBash = 'docker run -itd --volumes-from docker-volume-' + creator +
+  runBash = 'docker run -itd ' +
     ' -v /var/www/storage/codes/' + creator + "/" + name +
     ':/root/workspace  -p ' + port + ':3000 -p ' + appPort +
     ':8086 -p ' +
@@ -119,8 +119,7 @@ if(split[0] == 'vue-f7') {
 if (split[0] == 'php' || split[0] == 'wordpress') {
 
   runBash =
-    'docker run -itd -e "VIRTUAL_HOST=localhost" --volumes-from docker-volume-' +
-    creator +
+    'docker run -itd -e "VIRTUAL_HOST=localhost" ' +
     ' -v /var/www/storage/codes/' + creator + "/" + name +
     ':/root/workspace  -p ' + port + ':3000 -p ' + appPort +
     ':80 -p ' +
